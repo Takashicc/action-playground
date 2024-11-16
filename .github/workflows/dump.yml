@@ -1,6 +1,14 @@
 name: Dump
 
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      enable-context:
+        type: choice
+        required: true
+        options:
+          - "true"
+          - "false"
 
 defaults:
   run:
@@ -15,7 +23,7 @@ jobs:
       - uses: ./.github/actions/dump
         id: dump
         with:
-          enable-context: "true"
+          enable-context: ${{ inputs.enable-context}}
 
       - run: echo "${DATE}"
         env:
