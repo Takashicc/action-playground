@@ -21,7 +21,7 @@ runs:
     - run: |
         echo "::group::環境変数一覧"
         printenv | sort
-        ecoho "::endgroup::"
+        echo "::endgroup::"
       shell: bash
 
     - run: |
