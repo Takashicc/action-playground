@@ -18,10 +18,16 @@ outputs:
 runs:
   using: composite # Compositeアクションとして実装
   steps:
-    - run: printenv | sort
+    - run: |
+        echo "::group::環境変数一覧"
+        printenv | sort
+        ecoho "::endgroup::"
       shell: bash
 
-    - run: echo "${CONTEXT}"
+    - run: |
+        echo "::group::githubコンテキスト"
+        echo "${CONTEXT}"
+        echo "::endgroup::"
       if: ${{ inputs.enable-context == 'true' }}
       env:
         CONTEXT: ${{ toJSON(github) }}
